@@ -5,6 +5,7 @@ interface IMetadata {
     modules: object,
     controller: object;
     orchestrator: any;
+    stateManager: any;
 }
 
 export function Sender(metadata: IMetadata) {

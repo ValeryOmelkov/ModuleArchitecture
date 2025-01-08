@@ -23,7 +23,6 @@ export default class DIContainer {
             throw new Error(`Constructor not found for token: ${token}`);
         }
 
-        // Если провайдер — это класс, создаём его экземпляр
         if (typeof registered === 'function') {
             return this.instantiate<T>(registered);
         }

@@ -4,7 +4,7 @@ class BaseOrchestrator {
     ) {}
 
     public run(options: object): void {
-        this.modules.forEach(module => module.execute());
+        this.modules.forEach(module => module.execute(options));
     }
 }
 

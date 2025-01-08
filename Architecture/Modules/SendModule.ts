@@ -1,32 +1,18 @@
 import ProgressModule from './ProgressModule';
 import { Injectable } from '../Decorators/Injectable';
 import ErrorModule from './ErrorModule';
+import Module from '../Module';
 
 @Injectable([ErrorModule, ProgressModule])
-class SendModule {
+class SendModule extends Module {
     constructor(
         private readonly errorModule: ErrorModule,
         private readonly progressModule: ProgressModule
-    ) {}
+    ) { super() }
 
     public execute(): void {
-        console.log(this.errorModule);
-        // let step = 0;
-        // return new Promise((resolve) => {
-        //     const update = () => {
-        //         if (step < 6) {
-        //             this.progressModule.showProgress(1);
-        //             setTimeout(update, 1000);
-        //         } else {
-        //             resolve(2);
-        //         }
-        //     }
-        //
-        //     setTimeout(update, 1000);
-        // });
+        console.log('SendModule');
     }
 }
-
-const as = new SendModule({}, {})
 
 export default SendModule;

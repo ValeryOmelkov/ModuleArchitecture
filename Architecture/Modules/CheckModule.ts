@@ -1,13 +1,14 @@
 import ProgressModule from './ProgressModule';
 import { Injectable } from '../Decorators/Injectable';
+import Module from '../Module';
 
 @Injectable([ProgressModule])
-class CheckModule {
+class CheckModule extends Module {
     constructor(
         private readonly progressModule: ProgressModule
-    ) {}
+    ) { super() }
 
-    public execute(): Promise<void> {
+    public execute(): void {
         console.log('CheckModule');
         // let step = 0;
         // return new Promise((resolve) => {

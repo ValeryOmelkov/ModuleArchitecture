@@ -5,6 +5,7 @@ import SendModule from '../Modules/SendModule';
 import BaseOrchestrator from '../Orchestrators/Base';
 import BaseController from '../Controller/BaseController';
 import ErrorModule from '../Modules/ErrorModule';
+import StateManager from '../StateManager';
 
 @Sender({
     modules: [
@@ -14,7 +15,8 @@ import ErrorModule from '../Modules/ErrorModule';
         ErrorModule
     ],
     controller: BaseController,
-    orchestrator: BaseOrchestrator
+    orchestrator: BaseOrchestrator,
+    stateManager: StateManager
 })
 class Partial {}
 
