@@ -2,27 +2,23 @@ import ProgressModule from './ProgressModule';
 import { Injectable } from '../Decorators/Injectable';
 import Module from '../Module';
 
-@Injectable([ProgressModule])
 class CheckModule extends Module {
-    constructor(
-        private readonly progressModule: ProgressModule
-    ) { super() }
-
-    public execute(): void {
+    public async execute(): Promise<void> {
         console.log('CheckModule');
-        // let step = 0;
-        // return new Promise((resolve) => {
-        //     const update = () => {
-        //         if (step < 4) {
-        //             this.progressModule.showProgress(1);
-        //             setTimeout(update, 1000);
-        //         } else {
-        //             resolve(1);
-        //         }
-        //     }
-        //
-        //     setTimeout(update, 1000);
-        // });
+        const timeouts = [
+            this.delay(2000).then(() => this.state.set('progress', 50)),
+            this.delay(4000).then(() => this.state.set('progress', 60)),
+            this.delay(6000).then(() => this.state.set('progress', 70)),
+            this.delay(8000).then(() => this.state.set('progress', 80)),
+            this.delay(10000).then(() => this.state.set('progress', 90)),
+            this.delay(12000).then(() => this.state.set('progress', 100)),
+        ];
+
+        await Promise.all(timeouts);
+    }
+
+    delay(ms: number): Promise<void> {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
 

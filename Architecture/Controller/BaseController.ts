@@ -1,10 +1,12 @@
-import ProgressModule from '../Modules/ProgressModule';
-import BaseOrchestrator from '../Orchestrators/Base';
+import Orchestrator from '../Orchestrators/Orchestrator';
+import Controller from './Controller';
 
-export default class BaseController {
-    constructor(private readonly orchestrator: BaseOrchestrator) {}
-
+export default class BaseController extends Controller{
     async send(options: object) {
-        this.orchestrator.run(options);
+        this.orchestrator.run('send', options);
+    }
+
+    async check(options: object) {
+        this.orchestrator.run('check', options);
     }
 }

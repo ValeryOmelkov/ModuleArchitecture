@@ -1,14 +1,19 @@
+import StateManager from './StateManager';
+
 export default abstract class Module {
-    protected options;
-    protected stateManager;
+    protected state: StateManager;
+    protected modules: { [key: string]: Module } = {};
 
-    public setOptions<T>(options: T): void {
-        this.options = options;
+    public setState(state: StateManager): void {
+        this.state = state;
     }
 
-    public setStateManager<T>(stateManager: T): void {
-        this.stateManager = stateManager;
+    public setModule(token: string, module: Module): void {
+        this.modules = {
+            ...this.modules,
+            [token]: module,
+        };
     }
 
-    abstract execute<T>(options: T): void;
+    abstract execute(): Promise<void> | void;
 }

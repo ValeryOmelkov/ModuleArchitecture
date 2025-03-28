@@ -1,14 +1,11 @@
-import { ReflectMetadata } from './Factory/ReflectMetadata';
-import { Constructor } from './Types/types';
-
 export default class DIContainer {
     private registry = new Map();
 
-    constructor(targets: Constructor[]) {
-        targets.forEach((target: Constructor) => this.register(target));
+    constructor(targets: any[]) {
+        targets.forEach((target: any) => this.register(target));
     }
 
-    register(target: Constructor) {
+    register(target: any) {
         if (this.registry.has(target)) {
             throw new Error(`Token "${target}" уже зарегистрирован.`);
         }

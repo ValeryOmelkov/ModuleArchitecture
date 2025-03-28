@@ -5,13 +5,11 @@ class ProgressModule extends Module {
 
     public execute() {
         console.log('ProgressModule');
-        this.stateManager.set('complectId', 666);
+        this.state.subscribe('progress', this.showProgress)
     }
 
-    public showProgress(step: number) {
-        this.currentStep += step;
-        const progress = (this.currentStep / 10) * 100;
-        console.log(`Прогресс: ${progress.toFixed(2)}%`);
+    public showProgress(progress: number) {
+        console.log(`Прогресс: ${progress}%`);
     }
 }
 
